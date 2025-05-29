@@ -13,19 +13,6 @@
 		Lampa.Storage.set('lampac_unic_id', unic_id)
 	}
 
-	if (!window.rch) {
-		Lampa.Utils.putScript(
-			['http://showwwy.com/invc-rch.js'],
-			function () {},
-			false,
-			function () {
-				if (!window.rch.startTypeInvoke)
-					window.rch.typeInvoke('http://showwwy.com', function () {})
-			},
-			true
-		)
-	}
-
 	function BlazorNet() {
 		this.net = new Lampa.Reguest()
 		this.timeout = function (time) {
@@ -149,75 +136,6 @@
 			'http://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/showybot?start=' +
 			randomCode
 	}
-
-	// function deleteDeviceToken() {
-	// 	$.ajax({
-	// 		url: 'http://showwwy.com/api/delete_token/',
-	// 		method: 'POST',
-	// 		contentType: 'application/json',
-	// 		data: JSON.stringify({
-	// 			token: Lampa.Storage.get('showy_token'),
-	// 		}),
-	// 		success: function (response) {
-	// 			console.log('Token deleted successfully')
-	// 		},
-	// 		error: function (xhr) {
-	// 			console.error('Error deleting token:', xhr)
-	// 		},
-	// 	})
-	// 	Lampa.Storage.set('showy_token', '')
-	// 	window.location.href = '/'
-	// }
-
-	// function showModal() {
-	// 	function getRandomCode() {
-	// 		if (codeAttempts >= maxCodeAttempts) {
-	// 			Lampa.Activity.push({ component: 'main' })
-	// 			window.location.reload()
-	// 		}
-
-	// 		codeAttempts++
-
-	// 		return $.ajax({
-	// 			url: 'http://showwwy.com/api/get_code/',
-	// 			method: 'POST',
-	// 			dataType: 'json',
-	// 			success: function (data) {
-	// 				var randomCode = data.code
-	// 				Lampa.Storage.set('random_code', randomCode)
-	// 				updateModalContent(randomCode)
-	// 			},
-	// 			error: function (jqXHR) {
-	// 				setTimeout(getRandomCode, 1000)
-	// 			},
-	// 		})
-	// 	}
-
-	// 	getRandomCode()
-
-	// 	var modalHtml =
-	// 		'<div>' +
-	// 		'<img id="qrCodeImage"/>' +
-	// 		'<p>Р”Р»СЏ РїСЂРѕСЃРјРѕС‚СЂР° С‡РµСЂРµР· РѕРЅР»Р°Р№РЅ РїР»Р°РіРёРЅ Showy С‚СЂРµР±СѓРµС‚СЃСЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ, РїРѕР¶Р°Р»СѓР№СЃС‚Р° РѕС‚СЃРєР°РЅРёСЂСѓР№С‚Рµ QR РёР»Рё РІРІРµРґРёС‚Рµ РєРѕРґ РІ С‚РµР»РµРіСЂР°Рј-Р±РѕС‚Рµ @showybot РёР»Рё РїРѕ СЃСЃС‹Р»РєРµ t.me/showybot</p>' +
-	// 		'<p><strong id="randomCodeDisplay"></strong></p>' +
-	// 		'<p id="notification" style="display: none; background-color: #4caf50; color: white; padding: 10px; border-radius: 5px; margin-top: 10px;"></p>' +
-	// 		'</div>'
-
-	// 	if ($('.modal').length) {
-	// 		$('.modal').remove()
-	// 	}
-
-	// 	Lampa.Modal.open({
-	// 		title: '',
-	// 		align: 'center',
-	// 		zIndex: 300,
-	// 		html: $(modalHtml),
-	// 		onBack: function () {
-	// 			Lampa.Activity.push({ component: 'main' })
-	// 			window.location.reload()
-	// 		},
-	// 	})
-	// }
 
 	var Network = Lampa.Reguest
 	//var Network = Defined.api.indexOf('pwa') == 0 && typeof Blazor !== 'undefined' ? BlazorNet : Lampa.Reguest;
@@ -731,10 +649,11 @@
 					Defined.localhost + 'lite/events?life=true'
 				)
 				network.timeout(15000)
+				console.log(url)
 				network.silent(
 					account(url),
 					function (json) {
-						if (json.accsdb) return reject(json)
+						// if (json.accsdb) return reject(json)
 						if (json.life) {
 							_this4.memkey = json.memkey
 							if (json.title) {
