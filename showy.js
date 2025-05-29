@@ -150,24 +150,24 @@
 			randomCode
 	}
 
-	function deleteDeviceToken() {
-		$.ajax({
-			url: 'http://showwwy.com/api/delete_token/',
-			method: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				token: Lampa.Storage.get('showy_token'),
-			}),
-			success: function (response) {
-				console.log('Token deleted successfully')
-			},
-			error: function (xhr) {
-				console.error('Error deleting token:', xhr)
-			},
-		})
-		Lampa.Storage.set('showy_token', '')
-		window.location.href = '/'
-	}
+	// function deleteDeviceToken() {
+	// 	$.ajax({
+	// 		url: 'http://showwwy.com/api/delete_token/',
+	// 		method: 'POST',
+	// 		contentType: 'application/json',
+	// 		data: JSON.stringify({
+	// 			token: Lampa.Storage.get('showy_token'),
+	// 		}),
+	// 		success: function (response) {
+	// 			console.log('Token deleted successfully')
+	// 		},
+	// 		error: function (xhr) {
+	// 			console.error('Error deleting token:', xhr)
+	// 		},
+	// 	})
+	// 	Lampa.Storage.set('showy_token', '')
+	// 	window.location.href = '/'
+	// }
 
 	// function showModal() {
 	// 	function getRandomCode() {
